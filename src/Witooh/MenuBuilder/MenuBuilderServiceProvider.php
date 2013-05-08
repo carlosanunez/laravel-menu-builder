@@ -18,7 +18,9 @@ class MenuBuilderServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		//
+		$this->app['menu-builder'] = $this->app->share(function($app){
+            return new MenuBuilder();
+        });
 	}
 
 	/**

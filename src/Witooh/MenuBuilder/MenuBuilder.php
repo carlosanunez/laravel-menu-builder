@@ -3,16 +3,17 @@ namespace Witooh\MenuBuilder;
 
 class MenuBuilder
 {
+    private $behavior = 'Witooh\MenuBuilder\Menu';
 
-    protected static function generate($menuBehavior, $configs, $ul, $menuLevel)
+    protected function generate($configs, $ul, $menuLevel)
     {
         foreach ($configs as $config) {
-            $li = call_user_func(array($menuBehavior, "makeLI"), $config, $menuLevel);
+            $li = call_user_func(array($this->behavior, "makeLI"), $config, $menuLevel);
             if ($li != false) {
                 if (isset($config['menu']) && is_array($config['menu'])) {
                     $menuLevel++;
-                    $ulSubMenu = call_user_func(array($menuBehavior, "makeUL"), $menuLevel);
-                    $li->innerHtml(static::generate($menuBehavior, $config['menu'], $ulSubMenu, $menuLevel));
+                    $ulSubMenu = call_user_func(array($this->behavior, "makeUL"), $menuLevel);
+                    $li->innerHtml(static::generate($config['menu'], $ulSubMenu, $menuLevel));
                     $ul->innerHtml($li);
                 } else {
                     $ul->innerHtml($li);
@@ -23,10 +24,16 @@ class MenuBuilder
         return $ul;
     }
 
-    public static function make(array $configs, $menuBehavior = 'Witooh\MenuBuilder\Menu')
+    public function make(array $configs)
     {
-        $ul = call_user_func(array($menuBehavior, "makeUL"), 0);
-        $ul = static::generate($menuBehavior, $configs, $ul, 0);
+        $ul = call_user_func(array($this->behavior, "makeUL"), 0);
+        $ul = static::generate($configs, $ul, 0);
         echo $ul->toString();
     }
+
+    public function setBehavior($behavior)
+    {
+        $this->behavior = $behavior;
+    }
+
 }
