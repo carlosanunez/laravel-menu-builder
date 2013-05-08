@@ -3,7 +3,7 @@ namespace Witooh\MenuBuilder;
 
 class MenuBuilder
 {
-    private $behavior = 'Witooh\MenuBuilder\Menu';
+    private $behavior = 'Witooh\MenuBuilder\MenuBehavior';
 
     protected function generate($configs, $ul, $menuLevel)
     {
