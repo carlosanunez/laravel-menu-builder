@@ -26,6 +26,7 @@ and
 Implement IMenuBahvior
 
 ```php
+namespace MyMenu;
 class MenuBehavior implements IMenuBehavior
 {
 	public static function makeUL($menuLevel){
@@ -65,6 +66,12 @@ class MenuBehavior implements IMenuBehavior
         return $li;
     }
 }
+```
+
+Set the behavior to MenuBuilder
+
+```php
+MenuBuilder::setBehavior('MyMenu\MenuBehavior');
 ```
 
 Display the menu in blade
