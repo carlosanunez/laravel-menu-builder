@@ -3,7 +3,7 @@ namespace Witooh\MenuBuilder;
 
 use Witooh\TagBuilder\Facades\Tag;
 
-class Menu implements IMenu
+class MenuBehavior implements IMenuBehavior
 {
 
     public static function makeUL($menuLevel)

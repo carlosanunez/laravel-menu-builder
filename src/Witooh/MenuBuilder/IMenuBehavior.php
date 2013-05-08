@@ -2,7 +2,7 @@
 namespace Witooh\MenuBuilder;
 use Witooh\TagBuilder\Facades\Tag;
 
-interface IMenu {
+interface IMenuBehavior {
     /**
      * @param array $config
      * @param integer $menuLevel
